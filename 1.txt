@@ -8,3 +8,6 @@ all people happy everyday
 today is 11.12,i am at home
 
 Creating a new branch is quick.
+
+
+test --no-ff
