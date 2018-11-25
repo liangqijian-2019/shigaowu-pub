@@ -1,0 +1,4 @@
+FROM nginx
+MAINTAINER sgw
+RUN echo '<h1> shigaowu,hello </h1>'  > /usr/share/nginx/html/index.html
+EXPOSE 80
