@@ -1,0 +1,20 @@
+- hosts: 192.168.233.7
+  tasks:
+  - name: Unarchive a file that is already on the remote machine
+    unarchive:
+      src: /home/ipnet/sgw/jdk-8u31-linux-x64.tar.gz
+      dest: /home/ipnet/
+      remote_src: no
+      owner: ipnet
+      group: ipnet
+  - name: set env for jdk
+    copy:
+     src: /home/ipnet/.bash_profile
+     dest: /home/ipnet/.bash_profile
+     owner: ipnet
+     group: ipnet
+     mode: 0644
+     backup: yes
+  - name: source
+    shell:
+     source /home/ipnet/.bash_profile
