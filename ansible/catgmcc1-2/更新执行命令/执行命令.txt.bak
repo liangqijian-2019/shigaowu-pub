@@ -1,9 +1,0 @@
-ansible-playbook -i hosts gd-fm-ifdis-eastcom.yml -e "module=cams.v2 version=$VERSION" --tags war
-ansible-playbook -i hosts gd-fm-ifdis-eastcom.yml -e "module=secure version=$VERSION" --tags war
-ansible-playbook -i hosts gd-fm-ifdis-eastcom.yml -e "module=orders version=$VERSION" --tags war
-ansible-playbook -i hosts gd-fm-ifdis-eastcom.yml -e "module=SSO version=$VERSION" --tags war
-ansible-playbook -i hosts gd-fm-ifdis-eastcom.yml -e "module=SSO2 version=$VERSION" --tags war
-ansible-playbook -i hosts gd-fm-ifdis-eastcom.yml -e "module=cat-ws version=$VERSION" --tags war
-ansible-playbook -i hosts gd-fm-ifdis-eastcom.yml -e "module=cams.ws version=$VERSION" --tags war
-ansible-playbook -i hosts gd-fm-ifdis-eastcom.yml -e "module=cams.v2 version=$VERSION" --tags war
-ansible-playbook -i hosts gd-fm-ifdis-eastcom.yml -e "module=cams.v2 version=$VERSION" --tags war

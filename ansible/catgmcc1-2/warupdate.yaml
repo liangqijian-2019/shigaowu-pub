@@ -1,8 +1,0 @@
-- hosts: "{{ module }}"
-  become: yes
-  remote_user: "{{ user }}"
-  gather_facts: false
-  pre_tasks:
-    - include: tasks/check_arguments.yml
-  roles:
-    - {role: warupdate, module_name: "{{ module }}", tags: "war"}
