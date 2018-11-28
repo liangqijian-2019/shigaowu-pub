@@ -1,0 +1,4 @@
+- name: check arguments
+  fail:
+    msg: "version is missing"
+  when: version is undefined

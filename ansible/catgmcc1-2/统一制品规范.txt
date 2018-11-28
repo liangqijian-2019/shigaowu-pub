@@ -1,0 +1,11 @@
+https://120.198.253.154:10003/#browse/browse:gd-eastcom-raw
+这个是公共仓库，帐号先用 智能研判的
+gd-fm-ifdis-eastcom  If-0427@Dis
+
+
+
+
+规范
+http://gitlab.eastcom-sw.com/eastcom/training-docs/blob/master/spec/operations/%E7%BB%9F%E4%B8%80%E5%88%B6%E5%93%81%E5%BA%93%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83.md
+11:16:32
+

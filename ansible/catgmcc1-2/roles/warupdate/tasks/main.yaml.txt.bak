@@ -1,0 +1,65 @@
+- name: assure cache dir exists
+  file:
+    path: "{{ module_cache_dir }}"
+    state: directory
+
+- name: assure backup dir eists
+  file: 
+    path: "{{ module_install_dir }}/backup"
+    state: directory
+  
+- name: check backup status
+  shell: ls {{ module_install_dir }}/backup/{{ module_name }}-{{ version }}-pre
+  ignore_errors: yes
+  register: backup
+  
+- name: clean {{ module_name }} cache
+  file:
+    path: "{{ module_cache_file }}"
+    state: absent
+  when: not (rollback | bool)
+
+- name: download {{ module_name }}
+  get_url:
+    url: "{{ module_remote_file }}"
+    dest: "{{ module_cache_file }}"
+    url_username: gd-fm-ifdis-eastcom
+    url_password: If-0427@Dis
+  when: not (rollback | bool)
+  
+- name: stop {{ module_name }}
+  shell: sh -lc "./shutdown.sh"
+  args:
+    chdir: "{{ module_install_dir }}/bin"
+  ignore_errors: yes
+
+- name: backup {{ module_name }}
+  shell: mv webapps/{{ module_name }} backup/{{ module_name }}-{{ version }}-pre
+  args: 
+    chdir: "{{ module_install_dir }}"
+  when: (not rollback) and (backup | failed)
+
+- name: clean {{ module_name }} explored
+  file: 
+    path: "{{ module_install_dir }}/webapps/{{ module_name }}"
+    state: absent
+    
+- name: clean {{ module_name }} war
+  file: 
+    path: "{{ module_install_dir }}/webapps/{{ module_name }}.war"
+    state: absent
+    
+- name: install {{ module_name }}
+  shell: mv {{ module_cache_file }} {{ module_install_dir }}/webapps  
+  when: not (rollback | bool)
+
+- name: rollback {{ module_name }}
+  shell: mv backup/{{ module_name }}-{{ version }}-pre webapps/{{ module_name }}
+  args:
+    chdir: "{{module_install_dir}}"
+  when: rollback | bool
+  
+- name: start {{ module_name }}
+  shell: sh -lc "nohup ./startup.sh"
+  args: 
+    chdir: "{{ module_install_dir }}/bin"

@@ -1,0 +1,10 @@
+#/bin/bash
+home=/home/ipnet
+tomcat=apache-tomcat-7.0.82
+tdate=$(date "+%Y%m%d")
+#shutdown tomcat
+ps -ef | grep $tomcat| grep -v grep | awk '{print $2}'  | sed -e "s/^/kill -9 /g" | sh -
+echo $(date "+%Y/%m/%d %H:%M:%S")":关闭tomcat" >> $home/tomcat$tdate.log
+#startup tomcat
+nohup $home/$tomcat/bin/startup.sh >> $home/tomcat$tdate.log
+echo $(date "+%Y/%m/%d %H:%M:%S")":启动tomcat完成">> $home/tomcat$tdate.log

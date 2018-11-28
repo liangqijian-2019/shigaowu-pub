@@ -1,0 +1,6 @@
+rollback: false
+env: test
+module_cache_dir: /home/ipnet/packages/{{version}}
+module_cache_file: "{{module_cache_dir}}/{{module_name}}.tar.gz"
+module_remote_file: http://188.0.96.27:30003/repository/gd-eastcom-raw/gd-fm-ifdis-eastcom/{{env}}/{{version}}/{{module_name}}.tar.gz
+module_install_dir: /home/ipnet

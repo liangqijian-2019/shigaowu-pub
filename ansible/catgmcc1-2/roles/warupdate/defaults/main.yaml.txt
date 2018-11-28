@@ -1,0 +1,8 @@
+rollback: false
+env: pro
+#module: cams.v2
+#version: v0.0.1
+module_cache_dir: /home/{{ user }}/upload/{{ version }}
+module_cache_file: "{{ module_cache_dir }}/{{ module_name }}.war"
+module_remote_file: http://188.0.96.27:30003/repository/gd-eastcom-raw/gd-zzy-cat-eastcom/{{ env }}/{{ version }}/{{ module_name }}.war
+module_install_dir: /home/{{ user }}/apache-tomcat-7.0.82-v2

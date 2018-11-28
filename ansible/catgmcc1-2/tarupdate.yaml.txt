@@ -1,0 +1,8 @@
+---
+- hosts: "{{module}}"
+  remote_user: ipnet
+  gather_facts: false
+  pre_tasks:
+    - include: tasks/check_arguments.yml
+  roles:
+    - {role: tar, module_name: "{{module}}", tags: "tar"}
