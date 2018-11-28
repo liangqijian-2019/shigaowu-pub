@@ -1,0 +1,8 @@
+- hosts: cams.v2
+  become: yes
+  gather_facts: no
+  tasks:
+   - name: useradd
+     user: 
+       name: cat
+       password: "$1$0/MOL8/H$HUEUbScm7jgdFxmQSXCxT/"
