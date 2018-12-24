@@ -1,0 +1,22 @@
+<!-- index.html -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{% extends "base.html" %}
+{%block content %}
+     <form action="/blog/create/" method="post">{% csrf_token %}
+
+      <!-- Title:
+      <input type=text name=title><br>
+      Body:
+     <textarea name=body rows=3 cols=60></textarea><br> -->
+         <table>{{ form }}</table><br>
+         <input type="submit" value="let's submit">
+     </form>
+     <hr>
+
+    {% for post in posts %}
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.timestamp }}</p>
+        <p>{{ post.body }}</p>
+        <hr>
+    {% endfor %}
+{% endblock %}

@@ -8,6 +8,8 @@ from blog.models import BlogPost
 from blog.models import BlogPostForm
 
 from django.shortcuts import render_to_response
+#replace render_to_response
+#from django.views.generic import TemplateView
 from django.template import RequestContext
 
 #create_blogpost
@@ -19,11 +21,11 @@ from django.views.decorators.csrf import csrf_exempt
 @csrf_exempt
 def archive(request):
     posts = BlogPost.objects.all().order_by('-timestamp')[:5]
-    t = loader.get_template("archive.html")
+#    t = loader.get_template("index.html")
 ##  c = Context({'posts': posts})
-    html = t.render({'posts': posts, 'form': BlogPostForm()})
-    return HttpResponse(html,RequestContext(request))
-#   return render_to_response('archive.html', {'posts': posts, 'form': BlogPostForm()}, RequestContext(request))
+#    html = t.render({'posts': posts, 'form': BlogPostForm()})
+ #   return HttpResponse(html,RequestContext(request))
+    return render_to_response('index.html', {'posts': posts, 'form': BlogPostForm()}, RequestContext(request))
 
 @csrf_exempt
 def create_blogpost(request):
