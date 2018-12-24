@@ -1,0 +1,16 @@
+<!-- {% extends 'archive.html' %}
+{% block main %} -->
+  {% if error_msg %}
+    <p>{{ error_msg }}</p>
+  {% endif %}
+
+  {% for post in post_list %}
+    <div>
+        {{ post.title }}
+    </div>
+  {% empty %}
+    <div class="no-post">
+        暂时还没有发布的文章！
+    </div>
+  {% endfor %}
+<!--{% endblock main %} -->

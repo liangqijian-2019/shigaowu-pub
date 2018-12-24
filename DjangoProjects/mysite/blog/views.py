@@ -34,10 +34,20 @@ def create_blogpost(request):
 #          body = request.POST.get('body'),
 #          timestamp = datetime.now(),
 #      ).save()
-
        form = BlogPostForm(request.POST)
        if form.is_valid():
            post = form.save(commit=False)
-           post.timestamp=datetime.now()
+           post.timestamp = datetime.now()
            post.save()
     return HttpResponseRedirect('/blog/')
+
+@csrf_exempt
+def search(request):
+    q = request.GET.get('q')
+    error_msg = ''
+    if not q:
+        error_msg = '请输入关键词'
+        return render(request, 'index.html', {'error_msg': error_msg})
+
+    post_list = BlogPost.objects.filter(title__icontains=q)
+    return render(request, 'index.html', {'error_msg': error_msg, 'post_list': post_list})
