@@ -4,7 +4,7 @@ import re
 import threading
 import urllib.request
 
-COOKIE = 'anonymid=jq7o0wjf-yoc40q; depovince=ZGQT; _r01_=1; ick_login=7bbc73b2-7138-4d72-b635-8a8962478915; first_login_flag=1; ln_uact=**************.com; ln_hurl=http://hdn.xnimg.cn/photos/hdn521/20121028/1150/h_main_N8xu_096100008de71375.jpg; loginfrom=syshome; ch_id=10016; JSESSIONID=abcnb3OrbxvAMgoBoIZFw; jebe_key=085b9297-b2c9-4f8b-8b05-516f4d1dfbf2%7C1cbb1033eac0de7357478db49946ee23%7C1545979096709%7C1%7C1545979097006; wp_fold=0; jebecookies=c61792eb-a3e5-41a6-abdc-2cc48385981a|||||; _de=0B725AB25083833A855777BB458B199B6DEBB8C2103DE356; p=7b230a7a254bfabc86d814d8f105b6ce3; t=61e38d9685b8d1e63af60fd61c38e6bd3; societyguester=61e38d9685b8d1e63af60fd61c38e6bd3; id=384806863; xnsid=c7369a3'
+COOKIE = 'anonymid=jq7o0wjf-yoc40q; depovince=ZGQT; _r01_=1; ick_login=7bbc73b2-7138-4d72-b635-8a8962478915; first_login_flag=1; ln_uact=***@***.com; ln_hurl=http://hdn.xnimg.cn/photos/hdn521/20121028/1150/h_main_N8xu_096100008de71375.jpg; loginfrom=syshome; ch_id=10016; JSESSIONID=abcnb3OrbxvAMgoBoIZFw; jebe_key=085b9297-b2c9-4f8b-8b05-516f4d1dfbf2%7C1cbb1033eac0de7357478db49946ee23%7C1545979096709%7C1%7C1545979097006; wp_fold=0; jebecookies=c61792eb-a3e5-41a6-abdc-2cc48385981a|||||; _de=0B725AB25083833A855777BB458B199B6DEBB8C2103DE356; p=7b230a7a254bfabc86d814d8f105b6ce3; t=61e38d9685b8d1e63af60fd61c38e6bd3; societyguester=61e38d9685b8d1e63af60fd61c38e6bd3; id=384806863; xnsid=c7369a3'
 HEADERS = {'cookie': COOKIE}
 Agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.80 Safari/537.36'
 SGW = {'User-Agent':Agent}
@@ -59,9 +59,14 @@ def find_friendlist():
     else:
         print('find no friendID')
 
-
+#列表
+#'http://photo.renren.com/photo/' + str(line) + '/albumlist/v7'
 # http://photo.renren.com/photo/XXXXXXXXX/album/relatives/profile
-# http://photo.renren.com/photo/XXXXXXXXX/album-535947620?frommyphoto
+#相册地址
+#http://photo.renren.com/photo/342739999/album-574286923/v7
+#'http://photo.renren.com/photo/'+ str(line) + '/album-(.+?)/v7'
+# 'http://photo.renren.com/photo/'+ str(line) + '/album-535947620?frommyphoto'
+
 def find_ablumUrl():
     list = r''
     file = open('id1.txt')
@@ -69,8 +74,8 @@ def find_ablumUrl():
     while 1:
         line = file.readline()
         if line:
-            line = line[:-1]
-            photo_url = 'http://photo.renren.com/photo/348359757/album-538490587/v7'
+            line = line[:]
+            photo_url = 'http://photo.renren.com/photo/' + str(line) + '/albumlist/v7'
             print(photo_url)
             data = login_renren(photo_url)
             pattern = re.compile(r'http://photo.renren.com/photo/')
@@ -84,7 +89,7 @@ def find_ablumUrl():
                 albumid_set.add(i)
 
             for i in albumid_set:
-                album_list = 'http://photo.renren.com/photo/348359757/album-538490587/v7'
+                album_list = str(i) + '342739999/album-574286923/v7'
                 print(album_list)
                 ablum.write(album_list)
                 ablum.write(os.linesep)
@@ -101,7 +106,7 @@ def download_album():
         else:
             list = ''
             data = login_renren(line)
-            pattern = re.compile(r'http://fmn.rrimg.com/.*?/.*?/.*?/original_.*?_.*?\.jpg', re.I)  # large xlarge
+            pattern = re.compile(r'http://fmn..*?.com/.*?/.*?/.*?/original_.*?_.*?\.jpg', re.I)  # large xlarge
             if pattern.findall(data):
                 list = pattern.findall(data)
             else:
@@ -150,4 +155,5 @@ URL = r'http://www.renren.com'
 
 if __name__ == '__main__':
     start_photo_grap()
+    print('success ')
 
