@@ -177,7 +177,7 @@ $ git reset --keep <commit>
 
   相反，很少有大量的提交，并且很少分享它们，这使得解决冲突变得困难。
 
-###### 3. 不要半途而废
+##### 3. 不要半途而废
   您应该只在代码完成时提交代码。这并不意味着您必须在提交之前完成一个完整的大型功能。完全相反：分裂
 
 特性的实现分为逻辑块，并记住要尽早提交。
@@ -213,7 +213,7 @@ $ git reset --keep <commit>
   $ git help <command> 
 
 ###### 免费在线资源
-~~http://www.git-tower.com/learn~~ 
-http://rogerdudler.github.io/git-guide/ 
+~~http://www.git-tower.com/learn~~          
+http://rogerdudler.github.io/git-guide/          
 http://www.git-scm.org/
 
