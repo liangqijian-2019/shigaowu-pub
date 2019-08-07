@@ -6,7 +6,7 @@ class Nihao(object):
      pass
 ```
 
-
+|num|miaoshu|
 |-|-|
 |1|ni|
 |1|ta|
